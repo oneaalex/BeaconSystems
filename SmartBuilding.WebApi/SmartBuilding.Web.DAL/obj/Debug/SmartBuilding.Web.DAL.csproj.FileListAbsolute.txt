@@ -1,0 +1,12 @@
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\obj\Debug\SmartBuilding.Web.DAL.csprojResolveAssemblyReference.cache
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\bin\Debug\SmartBuilding.Web.DAL.dll.config
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\bin\Debug\SmartBuilding.Web.DAL.dll
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\bin\Debug\SmartBuilding.Web.DAL.pdb
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\bin\Debug\EntityFramework.dll
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\bin\Debug\SmartBuilding.Web.EF.dll
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\bin\Debug\SmartBuilding.Web.EF.pdb
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\bin\Debug\EntityFramework.xml
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\obj\Debug\SmartBuilding.Web.DAL.dll
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.DAL\obj\Debug\SmartBuilding.Web.DAL.pdb

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BeaconSystemsModelStoreContainer" CdmEntityContainer="BeaconSystemsEntities">
+    <EntitySetMapping Name="Beacons">
+      <EntityTypeMapping TypeName="BeaconSystemsModel.Beacon">
+        <MappingFragment StoreEntitySet="Beacons">
+          <ScalarProperty Name="BeaconID" ColumnName="BeaconID" />
+          <ScalarProperty Name="BeaconUUID" ColumnName="BeaconUUID" />
+          <ScalarProperty Name="Major" ColumnName="Major" />
+          <ScalarProperty Name="Minor" ColumnName="Minor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devices">
+      <EntityTypeMapping TypeName="BeaconSystemsModel.Device">
+        <MappingFragment StoreEntitySet="Devices">
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="DeviceUUID" ColumnName="DeviceUUID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="BeaconSystemsModel.Location">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="Floor" ColumnName="Floor" />
+          <ScalarProperty Name="Column" ColumnName="Column" />
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="Room" ColumnName="Room" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="BeaconSystemsModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="MailAddress" ColumnName="MailAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserWorkstations">
+      <EntityTypeMapping TypeName="BeaconSystemsModel.UserWorkstation">
+        <MappingFragment StoreEntitySet="UserWorkstation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="WorkstationID" ColumnName="WorkstationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Workstations">
+      <EntityTypeMapping TypeName="BeaconSystemsModel.Workstation">
+        <MappingFragment StoreEntitySet="Workstations">
+          <ScalarProperty Name="WorkstationID" ColumnName="WorkstationID" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BeaconSystemsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Beacons">
+          <Key>
+            <PropertyRef Name="BeaconID" />
+          </Key>
+          <Property Name="BeaconID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BeaconUUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Major" Type="int" Nullable="false" />
+          <Property Name="Minor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="DeviceID" />
+          </Key>
+          <Property Name="DeviceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceUUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="Column" Type="int" Nullable="false" />
+          <Property Name="Row" Type="int" Nullable="false" />
+          <Property Name="Room" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="PasswordHash" Type="binary" MaxLength="64" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="MailAddress" Type="varchar" MaxLength="80" />
+          <Property Name="SignInDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserWorkstation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="WorkstationID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Workstations">
+          <Key>
+            <PropertyRef Name="WorkstationID" />
+          </Key>
+          <Property Name="WorkstationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IP" Type="binary" MaxLength="4" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Devices_ToTable">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWorkstation_ToTable">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserWorkstation" Type="Self.UserWorkstation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserWorkstation">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWorkstation_ToTable_1">
+          <End Role="Workstations" Type="Self.Workstations" Multiplicity="1" />
+          <End Role="UserWorkstation" Type="Self.UserWorkstation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workstations">
+              <PropertyRef Name="WorkstationID" />
+            </Principal>
+            <Dependent Role="UserWorkstation">
+              <PropertyRef Name="WorkstationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workstations_ToTable">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+          <End Role="Workstations" Type="Self.Workstations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Workstations">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BeaconSystemsModelStoreContainer">
+          <EntitySet Name="Beacons" EntityType="Self.Beacons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserWorkstation" EntityType="Self.UserWorkstation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workstations" EntityType="Self.Workstations" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Devices_ToTable" Association="Self.FK_Devices_ToTable">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWorkstation_ToTable" Association="Self.FK_UserWorkstation_ToTable">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserWorkstation" EntitySet="UserWorkstation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWorkstation_ToTable_1" Association="Self.FK_UserWorkstation_ToTable_1">
+            <End Role="Workstations" EntitySet="Workstations" />
+            <End Role="UserWorkstation" EntitySet="UserWorkstation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workstations_ToTable" Association="Self.FK_Workstations_ToTable">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Workstations" EntitySet="Workstations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BeaconSystemsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Beacon">
+          <Key>
+            <PropertyRef Name="BeaconID" />
+          </Key>
+          <Property Name="BeaconID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BeaconUUID" Type="Guid" Nullable="false" />
+          <Property Name="Major" Type="Int32" Nullable="false" />
+          <Property Name="Minor" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="DeviceID" />
+          </Key>
+          <Property Name="DeviceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceUUID" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="BeaconSystemsModel.FK_Devices_ToTable" FromRole="Device" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Column" Type="Int32" Nullable="false" />
+          <Property Name="Row" Type="Int32" Nullable="false" />
+          <Property Name="Room" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Workstations" Relationship="Self.FK_Workstations_ToTable" FromRole="Locations" ToRole="Workstations" />
+        </EntityType>
+        <EntityType Name="UserWorkstation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="WorkstationID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Workstation" Relationship="Self.FK_UserWorkstation_ToTable_1" FromRole="UserWorkstation" ToRole="Workstations" />
+          <NavigationProperty Name="User" Relationship="BeaconSystemsModel.FK_UserWorkstation_ToTable" FromRole="UserWorkstation" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Workstation">
+          <Key>
+            <PropertyRef Name="WorkstationID" />
+          </Key>
+          <Property Name="WorkstationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IP" Type="Binary" MaxLength="4" FixedLength="true" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Workstations_ToTable" FromRole="Workstations" ToRole="Locations" />
+          <NavigationProperty Name="UserWorkstations" Relationship="Self.FK_UserWorkstation_ToTable_1" FromRole="Workstations" ToRole="UserWorkstation" />
+        </EntityType>
+        <Association Name="FK_Workstations_ToTable">
+          <End Role="Locations" Type="Self.Location" Multiplicity="1" />
+          <End Role="Workstations" Type="Self.Workstation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Workstations">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWorkstation_ToTable_1">
+          <End Role="Workstations" Type="Self.Workstation" Multiplicity="1" />
+          <End Role="UserWorkstation" Type="Self.UserWorkstation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workstations">
+              <PropertyRef Name="WorkstationID" />
+            </Principal>
+            <Dependent Role="UserWorkstation">
+              <PropertyRef Name="WorkstationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BeaconSystemsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Beacons" EntityType="Self.Beacon" />
+          <EntitySet Name="Devices" EntityType="Self.Device" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="UserWorkstations" EntityType="Self.UserWorkstation" />
+          <EntitySet Name="Workstations" EntityType="Self.Workstation" />
+          <AssociationSet Name="FK_Workstations_ToTable" Association="Self.FK_Workstations_ToTable">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Workstations" EntitySet="Workstations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWorkstation_ToTable_1" Association="Self.FK_UserWorkstation_ToTable_1">
+            <End Role="Workstations" EntitySet="Workstations" />
+            <End Role="UserWorkstation" EntitySet="UserWorkstations" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="BeaconSystemsModel.User" />
+          <AssociationSet Name="FK_Devices_ToTable" Association="BeaconSystemsModel.FK_Devices_ToTable">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Device" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWorkstation_ToTable" Association="BeaconSystemsModel.FK_UserWorkstation_ToTable">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserWorkstation" EntitySet="UserWorkstations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordHash" Type="Binary" MaxLength="64" FixedLength="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailAddress" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SignInDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Devices" Relationship="BeaconSystemsModel.FK_Devices_ToTable" FromRole="User" ToRole="Device" />
+          <NavigationProperty Name="UserWorkstations" Relationship="BeaconSystemsModel.FK_UserWorkstation_ToTable" FromRole="User" ToRole="UserWorkstation" />
+        </EntityType>
+        <Association Name="FK_Devices_ToTable">
+          <End Type="BeaconSystemsModel.User" Role="User" Multiplicity="1" />
+          <End Type="BeaconSystemsModel.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWorkstation_ToTable">
+          <End Type="BeaconSystemsModel.User" Role="User" Multiplicity="1" />
+          <End Type="BeaconSystemsModel.UserWorkstation" Role="UserWorkstation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserWorkstation">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BeaconSystemsModelStoreContainer" CdmEntityContainer="BeaconSystemsEntities">
+          <EntitySetMapping Name="Beacons">
+            <EntityTypeMapping TypeName="BeaconSystemsModel.Beacon">
+              <MappingFragment StoreEntitySet="Beacons">
+                <ScalarProperty Name="BeaconID" ColumnName="BeaconID" />
+                <ScalarProperty Name="BeaconUUID" ColumnName="BeaconUUID" />
+                <ScalarProperty Name="Major" ColumnName="Major" />
+                <ScalarProperty Name="Minor" ColumnName="Minor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="BeaconSystemsModel.Device">
+              <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="DeviceUUID" ColumnName="DeviceUUID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="BeaconSystemsModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Column" ColumnName="Column" />
+                <ScalarProperty Name="Row" ColumnName="Row" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserWorkstations">
+            <EntityTypeMapping TypeName="BeaconSystemsModel.UserWorkstation">
+              <MappingFragment StoreEntitySet="UserWorkstation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="WorkstationID" ColumnName="WorkstationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workstations">
+            <EntityTypeMapping TypeName="BeaconSystemsModel.Workstation">
+              <MappingFragment StoreEntitySet="Workstations">
+                <ScalarProperty Name="WorkstationID" ColumnName="WorkstationID" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BeaconSystemsModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="SignInDate" ColumnName="SignInDate" />
+                <ScalarProperty Name="MailAddress" ColumnName="MailAddress" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

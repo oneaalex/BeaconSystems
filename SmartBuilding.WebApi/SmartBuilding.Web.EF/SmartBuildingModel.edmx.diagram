@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0bb8711747e748b7908d817f9d87ad98" Name="Diagram1">
+        <EntityTypeShape EntityType="BeaconSystemsModel.Beacon" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeaconSystemsModel.Device" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeaconSystemsModel.Location" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeaconSystemsModel.UserWorkstation" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeaconSystemsModel.Workstation" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="BeaconSystemsModel.FK_Workstations_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="BeaconSystemsModel.FK_UserWorkstation_ToTable_1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BeaconSystemsModel.User" Width="1.5" PointX="3" PointY="4" />
+        <AssociationConnector Association="BeaconSystemsModel.FK_Devices_ToTable" />
+        <AssociationConnector Association="BeaconSystemsModel.FK_UserWorkstation_ToTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

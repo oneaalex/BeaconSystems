@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BeaconSystemsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Beacons">
+    <Key>
+      <PropertyRef Name="BeaconID" />
+    </Key>
+    <Property Name="BeaconID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BeaconUUID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Major" Type="int" Nullable="false" />
+    <Property Name="Minor" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Devices">
+    <Key>
+      <PropertyRef Name="DeviceID" />
+    </Key>
+    <Property Name="DeviceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceUUID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="int" Nullable="false" />
+    <Property Name="Floor" Type="int" Nullable="false" />
+    <Property Name="Column" Type="int" Nullable="false" />
+    <Property Name="Row" Type="int" Nullable="false" />
+    <Property Name="Room" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MailAddress" Type="varchar" MaxLength="80" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserWorkstation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="WorkstationID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Workstations">
+    <Key>
+      <PropertyRef Name="WorkstationID" />
+    </Key>
+    <Property Name="WorkstationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IP" Type="binary" MaxLength="4" Nullable="false" />
+    <Property Name="LocationID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Devices_ToTable">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Devices">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserWorkstation_ToTable">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserWorkstation" Type="Self.UserWorkstation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserWorkstation">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserWorkstation_ToTable_1">
+    <End Role="Workstations" Type="Self.Workstations" Multiplicity="1" />
+    <End Role="UserWorkstation" Type="Self.UserWorkstation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workstations">
+        <PropertyRef Name="WorkstationID" />
+      </Principal>
+      <Dependent Role="UserWorkstation">
+        <PropertyRef Name="WorkstationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workstations_ToTable">
+    <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+    <End Role="Workstations" Type="Self.Workstations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="Workstations">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BeaconSystemsModelStoreContainer">
+    <EntitySet Name="Beacons" EntityType="Self.Beacons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserWorkstation" EntityType="Self.UserWorkstation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Workstations" EntityType="Self.Workstations" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Devices_ToTable" Association="Self.FK_Devices_ToTable">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Devices" EntitySet="Devices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserWorkstation_ToTable" Association="Self.FK_UserWorkstation_ToTable">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserWorkstation" EntitySet="UserWorkstation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserWorkstation_ToTable_1" Association="Self.FK_UserWorkstation_ToTable_1">
+      <End Role="Workstations" EntitySet="Workstations" />
+      <End Role="UserWorkstation" EntitySet="UserWorkstation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workstations_ToTable" Association="Self.FK_Workstations_ToTable">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="Workstations" EntitySet="Workstations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

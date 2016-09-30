@@ -1,0 +1,10 @@
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\bin\Debug\SmartBuilding.Web.EF.dll.config
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\bin\Debug\SmartBuilding.Web.EF.dll
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\bin\Debug\SmartBuilding.Web.EF.pdb
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\bin\Debug\EntityFramework.dll
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\bin\Debug\EntityFramework.xml
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\obj\Debug\SmartBuilding.Web.EF.csprojResolveAssemblyReference.cache
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\obj\Debug\SmartBuilding.Web.EF.dll
+C:\Users\a.rascacea-onea\documents\visual studio 2015\Projects\SmartBuilding.WebApi\SmartBuilding.Web.EF\obj\Debug\SmartBuilding.Web.EF.pdb
